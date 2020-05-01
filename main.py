@@ -73,15 +73,18 @@ def main(config):
     # Get usage
     if config.PULL_USAGE:
         # First get student org unit
-        result = OrgUnits(admin_directory_service, sql, config).batch_pull_data()
+        orgUnits = OrgUnits(admin_directory_service, sql, config)
+        orgUnits.batch_pull_data()
+        result = orgUnits.return_all_data()
         org_unit_id = None if result.empty else result.iloc[0].loc["orgUnitId"]
 
         # Then get usage, loading data from after the last available day.
         usage = StudentUsage(admin_reports_service, sql, config, org_unit_id)
         last_date = usage.get_last_date()
-        start_date = last_date + timedelta(days=1) or datetime.strptime(
-            config.SCHOOL_YEAR_START, "%Y-%m-%d"
-        )
+        if last_date:
+            start_date = last_date + timedelta(days=1)
+        else:
+            start_date = datetime.strptime(config.SCHOOL_YEAR_START, "%Y-%m-%d")
         date_range = pd.date_range(start=start_date, end=datetime.today()).strftime(
             "%Y-%m-%d"
         )
@@ -110,7 +113,20 @@ def main(config):
         or config.PULL_INVITATIONS
         or config.PULL_ANNOUNCEMENTS
     ):
-        course_ids = Courses(classroom_service, sql, config).get_course_ids()
+        courses = Courses(classroom_service, sql, config).return_all_data()
+        course_ids = courses.id.unique()
+
+    # Get course aliases
+    if config.PULL_ALIASES:
+        CourseAliases(classroom_service, sql, config).batch_pull_data(course_ids)
+
+    # Get course invitations
+    if config.PULL_INVITATIONS:
+        Invitations(classroom_service, sql, config).batch_pull_data(course_ids)
+
+    # Get course announcements
+    if config.PULL_ANNOUNCEMENTS:
+        Announcements(classroom_service, sql, config).batch_pull_data(course_ids)
 
     # Get course aliases
     if config.PULL_ALIASES:
