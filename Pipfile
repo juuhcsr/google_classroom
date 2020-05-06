@@ -6,12 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-sqlsorcery = {extras = ["mssql", "postgres"],version = "*"}
 google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
 tenacity = "*"
 pytest = "*"
+pandas-gbq = "*"
+pybigquery = "*"
 
 [requires]
 python_version = "3.7"
