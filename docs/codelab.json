@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-05-13T21:31:57Z",
+  "id": "google-classroom",
+  "duration": 0,
+  "title": "Google Classroom to BigQuery Connector",
+  "authors": "Marcos Alcozer, InnovateEDU",
+  "summary": "In this codelab, you'll be introduced to a connector maintained by InnovateEDU that pulls Google Classroom data and stores it in Google BigQuery.",
+  "source": "1bU9W4_Fmcb8stdnXVxPRteaZndqRvd6YpzHv2zLJ9Ss",
+  "theme": "google-classroom",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Google Classroom"
+  ],
+  "tags": [
+    "google-classroom"
+  ],
+  "url": "google-classroom"
+}
