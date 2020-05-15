@@ -28,12 +28,9 @@
                   feedback-link="">
     
       <google-codelab-step label="Introduction" duration="0">
-        <p>For schools that use Google Classroom, InnovateEDU has published a free, open-source tool to extract your Google Classroom data and load it into Google BigQuery. Using BigQuery, a fully managed cloud data warehouse, you can analyze Classroom data using SQL and create data dashboards or reports using popular business intelligence tools such as Google Data Studio, Tableau, Power BI and Looker.</p>
-<p>&lt;&lt;INSERT GRAPHIC&gt;&gt;</p>
+        <p class="image-container"><img style="width: 362.50px" src="img/fc7a4a0d9b7ed2d7.png"></p>
+<p>For schools that use Google Classroom, InnovateEDU has published a free, open-source tool to extract your Google Classroom data and load it into Google BigQuery. Using BigQuery, a fully managed cloud data warehouse, you can analyze Classroom data using SQL and create data dashboards or reports using popular business intelligence tools such as Google Data Studio, Tableau, Microsoft Power BI and Looker.</p>
 <p>InnovateEDU is a national nonprofit that is focused on radically disrupting K12 education by supporting innovative learning models and tools at the intersection of data, technology, and education. Landing Zone, one of InnovateEDU&#39;s groundbreaking products, eliminates the high cost of building and maintaining data infrastructure by providing a managed solution where we integrate all education data that&#39;s important to you, together, in one place. We manage a Google Cloud project in your G Suite domain that leverages open data standards such as Ed-Fi and IMS to put up-to-date, useful data in your hands.</p>
-<h2 is-upgraded>Resources</h2>
-<p><a href="https://www.landingzone.org/" target="_blank">Landing Zone website</a></p>
-<p><a href="https://github.com/InnovateEDU-NYC/google_classroom" target="_blank">Google Classroom to BigQuery GitHub repository</a></p>
 
 
       </google-codelab-step>
@@ -41,7 +38,7 @@
       <google-codelab-step label="Prerequisites" duration="0">
         <p>A few things are needed to be able to complete this tutorial and successfully pull Google Classroom data into BigQuery.</p>
 <h2 is-upgraded>Google Cloud Project</h2>
-<p>You will need a Google Cloud project to run the script within. If you already have a project that you&#39;d like to run this within, you may skip this step. Otherwise, click the button below to jump straight to the project creation screen in Google Cloud.</p>
+<p>You will need a Google Cloud project to run the script within. If you already have a project that you&#39;d like to run this within, you may skip this step. Otherwise, click the button below to jump straight to the project creation screen in Google Cloud. Once your project has been created, note the project ID assigned to it. You will need this project ID later on in this tutorial.</p>
 <p><a href="https://console.cloud.google.com/projectcreate" target="_blank"><paper-button class="colored" raised>Create Google Cloud project</paper-button></a></p>
 <h2 is-upgraded>Google Admin access</h2>
 <p>While the user running the script does not need to be an admin of your G Suite domain, you do need an admin to assist with the setup process. Later in this tutorial, you will create a service account and your G Suite admin will need to whitelist API client access for this account.</p>
@@ -50,7 +47,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="Fetching Code" duration="0">
-        <p>Access Google Cloud Shell via <a href="https://ssh.cloud.google.com/cloudshell/editor" target="_blank">this link</a>. Cloud Shell is an online bash shell with file editor that makes it easy to manage your infrastructure or applications from the command line. Run the command below replacing <code>&lt;&lt;PROJECT_ID&gt;&gt;</code> with your Google Cloud project&#39;s ID.</p>
+        <p>Access Google Cloud Shell via <a href="https://ssh.cloud.google.com/cloudshell/editor" target="_blank">this link</a>. Cloud Shell is an online Bash shell with file editor that makes it easy to manage your infrastructure or applications from the command line. Bash refers to the command language interpreter used by Cloud Shell. Copy and paste command below into your Cloud Shell, replacing <code>&lt;&lt;PROJECT_ID&gt;&gt;</code> with your Google Cloud project&#39;s ID.</p>
 <p><code>Cloud Shell</code></p>
 <pre><code>$ gcloud config set project &lt;&lt;PROJECT_ID&gt;&gt;</code></pre>
 <h2 is-upgraded>Cloning git repo</h2>
@@ -69,7 +66,7 @@
 <h3 is-upgraded>ACCOUNT_EMAIL</h3>
 <p>Set <code>ACCOUNT_EMAIL</code> to the email of the G Suite user who will be running the connector.</p>
 <h3 is-upgraded>STUDENT_ORG_UNIT</h3>
-<p>The connector will pull down usage reports via the Reports API. If you&#39;d like to filter these reports to only include students, set <code>STUDENT_ORG_UNIT</code> to the OU where your student accounts are located. The connector pull reports for all user in the specified OU as well as its sub-OUs.</p>
+<p>The connector will pull down usage reports via the Reports API. If you&#39;d like to filter these reports to only include students, set <code>STUDENT_ORG_UNIT</code> to the OU where your student accounts are located. The connector pulls reports for all users in the specified OU as well as its sub-OUs.</p>
 <h3 is-upgraded>SCHOOL_YEAR_START</h3>
 <p>Set <code>SCHOOL_YEAR_START</code> to your school&#39;s start date using the format YYYY-MM-DD. If your district has multiple start dates, enter the earliest date.</p>
 <h3 is-upgraded>DB</h3>
@@ -81,22 +78,25 @@
       </google-codelab-step>
     
       <google-codelab-step label="Enable APIs" duration="0">
-        <p>A couple of APIs need to be enabled in the Google Cloud project. Navigate to your project&#39;s <a href="https://console.developers.google.com/apis/library" target="_blank">API Library</a>, search the two APIs listed below, and enable them.</p>
+        <p>A couple of APIs need to be enabled in the Google Cloud project.</p>
+<h3 is-upgraded>Option 1: Enable via Cloud Shell</h3>
+<p>Copy and paste two commands below into your Cloud Shell to enable the required APIs.</p>
+<p><code>Cloud Shell</code></p>
+<pre><code>$ gcloud services enable classroom.googleapis.com
+$ gcloud services enable admin.googleapis.com</code></pre>
+<h3 is-upgraded>Option 2: Enable via API Library</h3>
+<p>Navigate to your project&#39;s <a href="https://console.developers.google.com/apis/library" target="_blank">API Library</a>, search the two APIs listed below, and enable them.</p>
 <ul>
 <li>Google Classroom API</li>
 <li>Admin SDK</li>
 </ul>
-<p>You may also run the two commands below in your Cloud Shell to enable the required APIs.</p>
-<p><code>Cloud Shell</code></p>
-<pre><code>$ gcloud services enable classroom.googleapis.com
-$ gcloud services enable admin.googleapis.com</code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Service Account" duration="0">
-        <p>A service account is a special kind of account used by an application such as this connector and not a person. Applications use service accounts to make authorized API calls.</p>
-<p>In your Google Cloud Project, head to IAM &amp; Admin → Service Accounts. Click <strong>Create Service Account</strong>. You may also use the link below to jump straight to the page.</p>
+        <p>A service account is a special kind of account used by an application and not a person. This connector is an application that authenticates via a service account. Applications use service accounts to make authorized API calls.</p>
+<p>In your <strong>Google Cloud Project</strong>, head to<strong> IAM &amp; Admin </strong>→ Service Accounts. Click <strong>Create Service Account</strong>. You may also use the link below to jump straight to the page.</p>
 <p><a href="https://console.cloud.google.com/iam-admin/serviceaccounts/create" target="_blank"><paper-button class="colored" raised>Create Service Account</paper-button></a></p>
 <ul>
 <li>Create a name for your service account. For example, <em>Classroom Connector</em></li>
@@ -119,13 +119,13 @@ $ gcloud services enable admin.googleapis.com</code></pre>
 </aside>
 <p>Your new service account will need to be whitelisted in your Google Admin console. Every service account has an unique ID. Select the newly created service account in your Cloud console and note the associated unique ID.</p>
 <p><a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank"><paper-button class="colored" raised>View Service Accounts</paper-button></a></p>
-<p>In your Google Admin console, navigate to Security → API Permissions. Scroll to the bottom of the page and click on Manage Domain-wide Delegation.  You may also use the button below to jump straight there.</p>
+<p>In your Google Admin console, navigate to <strong>Security → API Permissions</strong>. Scroll to the bottom of the page and click on Manage Domain-wide Delegation.  You may also use the button below to jump straight there.</p>
 <p><a href="https://admin.google.com/ac/owl/domainwidedelegation" target="_blank"><paper-button class="colored" raised>Manage Domain-wide Delegation</paper-button></a></p>
 <ul>
 <li>Click <strong>Add new</strong></li>
 <li>Paste in your service accounts unique ID</li>
 <li>Copy and paste the text below into the oAuth scopes box</li>
-<li>Click Authorize </li>
+<li>Click <strong>Authorize </strong></li>
 </ul>
 <p><code>oAuth Scopes</code></p>
 <pre><code>https://www.googleapis.com/auth/admin.directory.orgunit,
@@ -143,14 +143,23 @@ https://www.googleapis.com/auth/classroom.topics</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="Build &amp; Run" duration="0">
-        <h3 is-upgraded>Build</h3>
-<p>You are now ready to build your Docker image. Run the command below in your Cloud Shell.</p>
+        <p>The commands below will show you how to build your Docker image and run the script. When using Cloud Shell, these two steps must be completed every time you&#39;d like to refresh the data in BigQuery.</p>
+<h3 is-upgraded>Build</h3>
+<p>You are now ready to build your Docker image. Copy and paste the command below into your Cloud Shell. It may take 3 - 4 minutes for this command to complete.</p>
 <p><code>Cloud Shell</code></p>
 <pre><code>$ docker build -t google_classroom .</code></pre>
+<h3 is-upgraded>Run</h3>
+<p>We recommend you first run this script with the <code>--courses</code> flag only pulling in a subset of your Classroom data. This will allow you to verify that everything has been setup and configured correctly.</p>
+<p><code>Cloud Shell</code></p>
+<pre><code>$ docker run --rm -it google_classroom --courses</code></pre>
+<p>If you receive an error, try adding the <code>--debug</code> flag to the command above. This will cause the script to log additional information which may help in troubleshooting the error.</p>
+<p>If the command above succeeded, you&#39;re now ready to fetch data from all Classroom API endpoints.</p>
+<p><code>Cloud Shell</code></p>
+<pre><code>$ docker run --rm -it google_classroom --all</code></pre>
 <h3 is-upgraded>Flags</h3>
-<p>Optional flags will include different types of pulls (can also be done via env variables):</p>
+<p>Below are all available flags for this script.</p>
 <ul>
-<li><code>--all</code> (for pulling all data)</li>
+<li><code>--all</code></li>
 <li><code>--usage</code></li>
 <li><code>--courses</code></li>
 <li><code>--topics</code></li>
@@ -164,10 +173,15 @@ https://www.googleapis.com/auth/classroom.topics</code></pre>
 <li><code>--invitations</code></li>
 <li><code>--announcements</code></li>
 </ul>
-<p>are</p>
-<h3 is-upgraded>Run</h3>
-<p><code>Cloud Shell</code></p>
-<pre><code>$ docker run --rm -it google_classroom</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Wrap Up" duration="0">
+        <p>That&#39;s it! If you found this tutorial helpful, we encourage you to check out our Landing Zone website linked below. The Landing Zone team builds data infrastructure of education organizations. Google Classroom is one of the many vendors we pull data from for our customers.</p>
+<h3 is-upgraded>Resources</h3>
+<p><a href="https://www.landingzone.org/" target="_blank">Landing Zone website</a></p>
+<p><a href="https://github.com/InnovateEDU-NYC/google_classroom" target="_blank">Google Classroom to BigQuery GitHub repository</a></p>
 
 
       </google-codelab-step>
