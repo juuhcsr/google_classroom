@@ -31,6 +31,9 @@
         <p class="image-container"><img style="width: 362.50px" src="img/fc7a4a0d9b7ed2d7.png"></p>
 <p>For schools that use Google Classroom, InnovateEDU has published a free, open-source tool to extract your Google Classroom data and load it into Google BigQuery. Using BigQuery, a fully managed cloud data warehouse, you can analyze Classroom data using SQL and create data dashboards or reports using popular business intelligence tools such as Google Data Studio, Tableau, Microsoft Power BI and Looker.</p>
 <p>InnovateEDU is a national nonprofit that is focused on radically disrupting K12 education by supporting innovative learning models and tools at the intersection of data, technology, and education. Landing Zone, one of InnovateEDU&#39;s groundbreaking products, eliminates the high cost of building and maintaining data infrastructure by providing a managed solution where we integrate all education data that&#39;s important to you, together, in one place. We manage a Google Cloud project in your G Suite domain that leverages open data standards such as Ed-Fi and IMS to put up-to-date, useful data in your hands.</p>
+<aside class="special"><p><strong>Advanced Users</strong></p>
+<p>If you&#39;re comfortable viewing a README in a git repo and following those steps to implement, you can view the repo behind this tutorial on <a href="https://github.com/InnovateEDU-NYC/google_classroom" target="_blank">GitHub</a>.</p>
+</aside>
 
 
       </google-codelab-step>
@@ -147,7 +150,7 @@ https://www.googleapis.com/auth/classroom.topics</code></pre>
 <h3 is-upgraded>Build</h3>
 <p>You are now ready to build your Docker image. Copy and paste the command below into your Cloud Shell. It may take 3 - 4 minutes for this command to complete.</p>
 <p><code>Cloud Shell</code></p>
-<pre><code>$ docker build -t google_classroom .</code></pre>
+<pre>$ docker build -t google_classroom .</pre>
 <h3 is-upgraded>Run</h3>
 <p>We recommend you first run this script with the <code>--courses</code> flag only pulling in a subset of your Classroom data. This will allow you to verify that everything has been setup and configured correctly.</p>
 <p><code>Cloud Shell</code></p>
