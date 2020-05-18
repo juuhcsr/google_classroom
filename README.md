@@ -70,11 +70,11 @@ GUARDIAN_INVITES_BATCH_SIZE=
 ALIASES_BATCH_SIZE=
 INVITATIONS_BATCH_SIZE=
 ANNOUNCEMENTS_BATCH_SIZE=
-PAGE_SIZE=The number of items to page at once.
+PAGE_SIZE=
 
 # Email notification variables
 # Set DISABLE_MAILER to "YES" if you do not want email notifications to be sent.
-DISABLE_MAILER=
+DISABLE_MAILER=YES
 SENDER_EMAIL=
 SENDER_PWD=
 RECIPIENT_EMAIL=
