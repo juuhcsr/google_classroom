@@ -150,7 +150,8 @@ https://www.googleapis.com/auth/classroom.topics</code></pre>
 <h3 is-upgraded>Build</h3>
 <p>You are now ready to build your Docker image. Copy and paste the command below into your Cloud Shell. It may take 3 - 4 minutes for this command to complete.</p>
 <p><code>Cloud Shell</code></p>
-<pre>$ docker build -t google_classroom .</pre>
+<pre>$ cd google_classroom
+$ docker build -t google_classroom .</pre>
 <h3 is-upgraded>Run</h3>
 <p>We recommend you first run this script with the <code>--courses</code> flag only pulling in a subset of your Classroom data. This will allow you to verify that everything has been setup and configured correctly.</p>
 <p><code>Cloud Shell</code></p>
