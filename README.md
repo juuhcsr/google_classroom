@@ -37,7 +37,7 @@ DB=
 DB_USER=
 DB_PWD=
 DB_SCHEMA=
-DB_CREDS=name of json file with service account credentials
+DB_CREDENTIALS=name of json file with service account credentials
 
 # (Optional) Data Pulls To Enable. Set to "YES" to include that pull.
 # These can be left out in favor of command line arguments.
