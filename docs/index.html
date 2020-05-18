@@ -180,6 +180,33 @@ https://www.googleapis.com/auth/classroom.topics</code></pre>
 
       </google-codelab-step>
     
+      <google-codelab-step label="Visualization" duration="0">
+        <p>We&#39;ve also published a Data Studio report template that makes visualizing this data easy. Once you have the Google Classroom tables created in your BigQuery, follow the steps below to copy our report into your Data Studio.</p>
+<p class="image-container"><img style="width: 624.00px" src="img/461fc5a6486d7999.png"></p>
+<h3 is-upgraded>Copy data source</h3>
+<p>Before you can copy the report itself, you&#39;ll need to copy the data source into your Data Studio instance. </p>
+<p><a href="https://datastudio.google.com/open/1J_nWVVc9MpiEqJGdiAN757U4j9-Oqynd" target="_blank"><paper-button class="colored" raised>Copy data source</paper-button></a></p>
+<ul>
+<li>Click the green button above to open the data source</li>
+<li>In the upper-right corner, click <img style="width: 18.00px" src="img/14575f934e800122.png"></li>
+<li>In the confirmation dialog, click <strong>Copy Data Source</strong></li>
+<li>You&#39;ll now have a copy of the data source that&#39;s owned and editable by you. You&#39;ll see we are using the <em>custom query</em> option for Data Studio&#39;s BigQuery connector. Select your project ID to the right of <strong>Custom Query</strong></li>
+<li>Our sample report uses a BigQuery dataset named <em>Staging</em>. Read through the SQL noting every time <em>Staging</em> is referenced and replace with your dataset name.</li>
+<li>Click <strong>Reconnect</strong></li>
+</ul>
+<h3 is-upgraded>Copy </h3>
+<p><a href="https://datastudio.google.com/u/0/reporting/1_BpTpJnFGNgXBGQ3WhbgDIqDziHCNw6O/page/rUWQB/preview" target="_blank"><paper-button class="colored" raised>Copy report template</paper-button></a></p>
+<ul>
+<li>Click the green button above to open the report template</li>
+<li>Click <strong>Use Template</strong></li>
+<li>Select your new data source</li>
+<li>Click <strong>Create Report</strong></li>
+</ul>
+<p>That&#39;s it! You now have the ability to make any modification you&#39;d like to the SQL behind the data source or the Data Studio report itself. Happy building!</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Wrap Up" duration="0">
         <p>That&#39;s it! If you found this tutorial helpful, we encourage you to check out our Landing Zone website linked below. The Landing Zone team builds data infrastructure of education organizations. Google Classroom is one of the many vendors we pull data from for our customers.</p>
 <h3 is-upgraded>Resources</h3>
