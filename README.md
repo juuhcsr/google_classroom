@@ -225,7 +225,7 @@ Abaixo estão todos os sinalizadores disponíveis para este script.
 </details>
 </details>
 
-## Opcional
+## Opcionais
   
 <details>
 <summary> Usando Data studio para viualizar dados </summary><br/>
