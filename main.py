@@ -117,7 +117,8 @@ def main(config):
     ):
         courses = Courses(classroom_service, sql, config).return_all_data()
         course_ids = courses.id.unique()
-
+        print (courses)
+        
     # Get course aliases
     if config.PULL_ALIASES:
         CourseAliases(classroom_service, sql, config).batch_pull_data(course_ids)
