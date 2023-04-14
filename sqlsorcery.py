@@ -76,6 +76,9 @@ class Connection:
         """
         Inserts pandas dataframe into database table.
         """
+        temp_csv_string = df.to_csv(sep=";", index=False)
+        temp_csv_string_IO = StringIO(temp_csv_string)
+        df = pd.read_csv(temp_csv_string_IO, sep=";")
         if self.dialect == "bigquery":
             pandas_gbq.to_gbq(
                 dataframe=df,
