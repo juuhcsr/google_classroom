@@ -1,6 +1,6 @@
 # Extrator de dados do Classroom para o BigQuery :electron: :brazil:
 
-Para extrair dados do Google Classroom e transferi-los para o Google BigQuery, a InnovateEDU criou uma ferramenta gratuita e de código aberto.
+Para extrair dados do Google Classroom e transferi-los para o Google BigQuery, a [InnovateEDU](https://www.innovateedunyc.org/) criou uma ferramenta gratuita e de código aberto.
 
 > Esse repositório possui uma atualização que corrige o erro ao importar para o Bigquery.
 
@@ -102,7 +102,7 @@ https://www.googleapis.com/auth/classroom.topics
   
   
   
-(Lista de todas as permissões)[https://developers.google.com/resources/api-libraries/documentation/classroom/v1/cpp/latest/classgoogle__classroom__api_1_1ClassroomService_1_1SCOPES.html]
+[Lista de todas as permissões](https://developers.google.com/resources/api-libraries/documentation/classroom/v1/cpp/latest/classgoogle__classroom__api_1_1ClassroomService_1_1SCOPES.html)
 </details>
 </details>
 
