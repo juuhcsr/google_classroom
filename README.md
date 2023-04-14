@@ -11,7 +11,8 @@ Para usar a ferramenta para extrair os dados do Google Classroom e carregá-los 
 3. Dar permissão para a conta de serviço
 4. Copiar o repositório;
 5. Declarar as variáveis corretas;
-6. Executar o docker;
+6. Exportar service.json
+7. Executar o docker;
 
 ## Pré requisitos
 
