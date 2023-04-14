@@ -25,7 +25,7 @@ Algumas APIs precisam ser ativadas no projeto do Google Cloud. Você pode ativá
 gcloud services enable classroom.googleapis.com
 gcloud services enable admin.googleapis.com
 ```
-
+---
 </details>
 
 
@@ -52,6 +52,7 @@ Depois de ter criado a conta de serviço
 - Clique em Concluído.
 
 > Guarde esse arquivo para fazer o upload nos próximos passos 
+---
 </details>
 
 
@@ -104,7 +105,12 @@ https://www.googleapis.com/auth/classroom.topics
   
   
 [Lista de todas as permissões](https://developers.google.com/resources/api-libraries/documentation/classroom/v1/cpp/latest/classgoogle__classroom__api_1_1ClassroomService_1_1SCOPES.html)
+---
+
 </details>
+
+  ---
+
 </details>
 
 ## Deploy da ferramenta
@@ -121,7 +127,7 @@ para configurar seu projeto. Em seguida, clone o repositório do GitHub usando o
 ```
 git clone https://github.com/InnovateEDU-NYC/google_classroom.git
 ```
-  
+---
 </details>
 
 <details>
@@ -155,6 +161,8 @@ Descrição das variáveis:
 **DB** = defina como o ID do seu projeto do Google Cloud.
 
 **DB_SCHEMA** = Conjunto de dados do BigQuery em que você deseja que o conector crie as tabelas do Google Sala de Aula.
+
+  ---
 </details>
 
 <details>
@@ -172,7 +180,7 @@ chmod +x .env
 chmod +x service.json
 ```
 
-  
+---
 </details>
 
 
@@ -222,8 +230,12 @@ Abaixo estão todos os sinalizadores disponíveis para este script.
 --invitations
 --announcements
 ```
-  
+---
+
 </details>
+  
+---
+  
 </details>
 
 ## Opcionais
@@ -255,7 +267,7 @@ Antes de poder copiar o próprio relatório, você precisará copiar a fonte de 
 
 
 É isso! Agora você pode fazer qualquer modificação que desejar no SQL por trás da fonte de dados ou no próprio relatório do Data Studio.
-  
+---
 </details>
 
 <details>
@@ -266,5 +278,5 @@ Para verificar mais projetos da landing zone [Clique aqui](https://www.landingzo
 Para verificar o relatório original [Clique aqui](https://innovateedu-nyc.github.io/google_classroom/index.html);
 
 Para acessar o Repositório github [Clique aqui](https://github.com/InnovateEDU-NYC/google_classroom).  
-  
+---
 </details>  
