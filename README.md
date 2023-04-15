@@ -160,7 +160,7 @@ Descrição das variáveis:
 
 **DB** = defina como o ID do seu projeto do Google Cloud.
 
-**DB_SCHEMA** = Conjunto de dados do BigQuery em que você deseja que o conector crie as tabelas do Google Sala de Aula.
+**DB_SCHEMA** = Nome do conjunto de dados (dataset) do BigQuery em que você deseja que o conector crie as tabelas do Google Sala de Aula. 
 
   ---
 </details>
@@ -168,7 +168,7 @@ Descrição das variáveis:
 <details>
 <summary> Exportar service.json </summary><br/>
   
-> Antes de executar o docker clique nas 3 bolinhas no menu superior do cloud shell e faça o upload do JSON da conta de serviço recém-criada. **Renomeie o arquivo para service.json**
+Antes de executar o docker clique nas 3 bolinhas no menu superior do cloud shell e faça o upload do JSON da conta de serviço recém-criada. **Renomeie o arquivo para service.json**
 {.is-info}
 
 ```shell
@@ -267,6 +267,7 @@ Antes de poder copiar o próprio relatório, você precisará copiar a fonte de 
 
 
 É isso! Agora você pode fazer qualquer modificação que desejar no SQL por trás da fonte de dados ou no próprio relatório do Data Studio.
+
 ---
 </details>
 
@@ -275,8 +276,9 @@ Antes de poder copiar o próprio relatório, você precisará copiar a fonte de 
  
 Para verificar mais projetos da landing zone [Clique aqui](https://www.landingzone.org/);
 
-Para verificar o relatório original [Clique aqui](https://innovateedu-nyc.github.io/google_classroom/index.html);
+Para verificar o relatório da EducationEdu [Clique aqui](https://innovateedu-nyc.github.io/google_classroom/index.html);
 
-Para acessar o Repositório github [Clique aqui](https://github.com/InnovateEDU-NYC/google_classroom).  
+Para acessar o Repositório da EducationEdu do github [Clique aqui](https://github.com/InnovateEDU-NYC/google_classroom). 
+
 ---
 </details>  
