@@ -299,9 +299,10 @@ class StudentUsage(EndPoint):
 
     def _parse_classroom_last_used(self, parameters):
         """Get classroom last interaction time from parameters list."""
-        for parameter in parameters:
-            if parameter.get("name") == "classroom:last_interaction_time":
-                return parameter.get("datetimeValue")
+        if parameters is not None:
+            for parameter in parameters:
+                if parameter.get("name") == "classroom:last_interaction_time":
+                    return parameter.get("datetimeValue")
 
 
 class Guardians(EndPoint):
