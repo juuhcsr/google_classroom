@@ -125,7 +125,7 @@ gcloud config set project <<PROJECT_ID>>
 ```
 para configurar seu projeto. Em seguida, clone o repositório do GitHub usando o comando 
 ```
-git clone https://github.com/InnovateEDU-NYC/google_classroom.git
+git clone https://github.com/juuhcsr/google_classroom
 ```
 ---
 </details>
