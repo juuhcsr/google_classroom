@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, Table, MetaData
 from sqlalchemy.engine.url import URL
 from sqlalchemy.exc import NoSuchTableError
 from sqlalchemy.schema import DropTable
-
+from io import StringIO 
 
 class Connection:
     def __init__(
@@ -79,6 +79,7 @@ class Connection:
         temp_csv_string = df.to_csv(sep=";", index=False)
         temp_csv_string_IO = StringIO(temp_csv_string)
         df = pd.read_csv(temp_csv_string_IO, sep=";")
+        print(df)
         if self.dialect == "bigquery":
             pandas_gbq.to_gbq(
                 dataframe=df,
