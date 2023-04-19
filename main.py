@@ -83,6 +83,7 @@ def main(config):
         # Then get usage, loading data from after the last available day.
         usage = StudentUsage(admin_reports_service, sql, config, org_unit_id)
         last_date = usage.get_last_date()
+        last_date = datetime.strptime(last_date, "%Y-%m-%d")
         if last_date:
             start_date = last_date + timedelta(days=1)
         else:
